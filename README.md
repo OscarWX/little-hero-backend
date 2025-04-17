@@ -1,6 +1,6 @@
-# Little Hero Backend
+# Backend API
 
-A FastAPI-based backend for the Little Hero project.
+A FastAPI-based backend project.
 
 ## Setup
 
@@ -59,7 +59,7 @@ The project uses Git for version control. Here are some common commands:
 
 1. Connect to a GitHub repository:
    ```
-   git remote add origin https://github.com/username/little-hero-backend.git
+   git remote add origin https://github.com/username/backend-project.git
    ```
 
 2. Push to GitHub:
@@ -98,5 +98,5 @@ The project uses Git for version control. Here are some common commands:
 
 ## Project Structure
 
-- `main.py` - Main application entry point
+- `main.py` - Main application entry point with API routes
 - `requirements.txt` - Project dependencies 
