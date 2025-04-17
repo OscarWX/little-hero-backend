@@ -55,6 +55,24 @@ The project uses Git for version control. Here are some common commands:
    git commit -m "Description of changes"
    ```
 
+### GitHub Integration
+
+1. Connect to a GitHub repository:
+   ```
+   git remote add origin https://github.com/username/little-hero-backend.git
+   ```
+
+2. Push to GitHub:
+   ```
+   git push -u origin master   # First push
+   git push                    # Subsequent pushes
+   ```
+
+3. Pull changes from GitHub:
+   ```
+   git pull
+   ```
+
 ### Undoing Changes
 
 1. Discard changes in working directory:
