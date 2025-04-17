@@ -33,6 +33,51 @@ Once the server is running, you can access:
 - Interactive API documentation: http://localhost:8000/docs
 - Alternative documentation: http://localhost:8000/redoc
 
+## Version Control with Git
+
+The project uses Git for version control. Here are some common commands:
+
+### Tracking Changes
+
+1. Check status of changes:
+   ```
+   git status
+   ```
+
+2. Stage changes for commit:
+   ```
+   git add <filename>   # Stage specific file
+   git add .            # Stage all changes
+   ```
+
+3. Commit changes:
+   ```
+   git commit -m "Description of changes"
+   ```
+
+### Undoing Changes
+
+1. Discard changes in working directory:
+   ```
+   git checkout -- <filename>   # For specific file
+   git checkout -- .            # For all files
+   ```
+
+2. Undo last commit (keeping changes):
+   ```
+   git reset --soft HEAD~1
+   ```
+
+3. View commit history:
+   ```
+   git log
+   ```
+
+4. Revert to a specific commit:
+   ```
+   git checkout <commit-hash>
+   ```
+
 ## Project Structure
 
 - `main.py` - Main application entry point
