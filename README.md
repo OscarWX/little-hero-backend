@@ -1,6 +1,6 @@
-# Backend API
+# Little Hero Backend API
 
-A FastAPI-based backend project.
+A FastAPI-based backend project for the Little Hero platform, which allows users to create personalized children's picture books.
 
 ## Setup
 
@@ -22,16 +22,94 @@ A FastAPI-based backend project.
 
 Start the development server:
 ```
-uvicorn main:app --reload
+python main.py
 ```
 
-The server will start at http://localhost:8000
+The server will start at http://0.0.0.0:8000
 
 ## API Documentation
 
 Once the server is running, you can access:
 - Interactive API documentation: http://localhost:8000/docs
 - Alternative documentation: http://localhost:8000/redoc
+
+## API Endpoints
+
+### User Management
+
+- **POST /api/users/register** - Register a new user
+- **POST /api/users/login** - Authenticate and get a token
+
+### Book Creation
+
+- **POST /api/books** - Create a new book request
+- **GET /api/books/{book_id}** - Get the status of a book
+- **GET /api/books** - List all books created by the user
+- **GET /api/books/{book_id}/download** - Download a completed book
+
+### Adventure Types
+
+- **GET /api/adventure-types** - Get a list of available adventure types
+
+## Project Structure
+
+- `app/` - Main application package
+  - `database/` - Database configuration and models
+  - `models/` - SQLAlchemy ORM models
+  - `routers/` - API endpoint routers
+  - `schemas/` - Pydantic models for request/response
+  - `utils/` - Utility functions
+    - `storage.py` - S3 storage integration
+    - `storage_management.py` - Utility script for S3 management
+- `static/` - Static files (images, etc.)
+- `uploads/` - Directory for user uploads
+- `main.py` - Application entry point
+
+## Amazon S3 Storage Integration
+
+The application uses Amazon S3 for storing:
+- User-uploaded photos
+- Generated book illustrations
+- Final PDF books
+- Book thumbnails
+
+### Configuration
+
+S3 storage is configured through environment variables in the `.env` file:
+
+```
+S3_BUCKET_NAME="your-bucket-name"
+S3_REGION="your-region"
+S3_ACCESS_KEY="your-access-key"
+S3_SECRET_KEY="your-secret-key"
+```
+
+### Storage Management
+
+A utility script is provided for managing S3 storage:
+
+```
+# List all objects in the bucket
+python -m app.utils.storage_management list
+
+# List objects with a specific prefix
+python -m app.utils.storage_management list --prefix="books/"
+
+# Delete a specific object
+python -m app.utils.storage_management delete "books/123/photos/image.jpg"
+
+# Delete all objects with a specific prefix
+python -m app.utils.storage_management delete-prefix "books/123/"
+
+# Set up lifecycle policies
+python -m app.utils.storage_management setup-lifecycle
+```
+
+### Storage Lifecycle
+
+The application automatically configures lifecycle policies for S3:
+- Temporary uploads are deleted after 1 day
+- Processing files are deleted after 7 days
 
 ## Version Control with Git
 
@@ -59,7 +137,7 @@ The project uses Git for version control. Here are some common commands:
 
 1. Connect to a GitHub repository:
    ```
-   git remote add origin https://github.com/username/backend-project.git
+   git remote add origin https://github.com/username/little-hero-backend.git
    ```
 
 2. Push to GitHub:
@@ -94,9 +172,4 @@ The project uses Git for version control. Here are some common commands:
 4. Revert to a specific commit:
    ```
    git checkout <commit-hash>
-   ```
-
-## Project Structure
-
-- `main.py` - Main application entry point with API routes
-- `requirements.txt` - Project dependencies 
+   ``` 
